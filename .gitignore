@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Internal / working files (keep strategy out of the public Pages repo)
+*-Roadmap.md
+/internal/
+/notes/
+
+# Heavy source media — the repo should only carry optimized files in assets/img/
+assets/Lifestyle Photos/
+assets/Products Photos/
+assets/**/*.pdf
+assets/**/*.ai
+assets/**/*.psd
