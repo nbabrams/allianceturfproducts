@@ -233,9 +233,9 @@
   .craft-section { padding: 7rem 2rem; background: var(--white); }
   .craft-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto; }
   .craft-visual {
-    aspect-ratio: 4/3; background: linear-gradient(135deg, var(--deep-black) 0%, rgba(45,90,39,0.9) 100%);
+    aspect-ratio: 4/3; background: var(--deep-black);
     border-radius: 4px; position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
+    display: flex; flex-direction: column;
   }
   .craft-visual::after {
     content: ''; position: absolute; inset: 0;
@@ -646,11 +646,8 @@
 <section class="craft-section">
   <div class="craft-grid reveal">
     <div class="craft-visual">
-      <div class="craft-visual-text">
-        <div class="kanji">職人技</div>
-        <p>Precision Craftsmanship</p>
-        <span>Since 1910 · Sakai, Japan</span>
-      </div>
+      <img src="assets/img/craft-reel.webp" alt="Baroness cutting reel components" loading="lazy" style="flex:1;width:100%;min-height:0;object-fit:cover;display:block;">
+      <img src="assets/img/craft-blade.webp" alt="Baroness precision-forged cutting reel" loading="lazy" style="flex:1;width:100%;min-height:0;object-fit:cover;display:block;">
     </div>
     <div class="craft-content">
       <div class="section-tag">The Baroness Heritage</div>
@@ -734,7 +731,7 @@
           </div>
         </div>
         <div class="team-card">
-          <div class="team-avatar">LG</div>
+          <div class="team-avatar" style="overflow:hidden;"><img src="assets/img/lionel.webp" alt="Lionel Guzman" style="width:100%;height:100%;object-fit:cover;"></div>
           <div class="team-info">
             <h4>Lionel Guzman</h4>
             <div class="team-role">Service & Training</div>
@@ -921,9 +918,9 @@
 
     <!-- LM551B -->
     <div class="product-card">
-      <div class="product-image" style="background:#fff;">
+      <div class="product-image" style="background:#0f2417;">
         <div class="product-badge">Fairway</div>
-        <img src="assets/img/products/fairway-lm551b.webp" alt="Baroness LM551B fairway mower" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:1.25rem;">
+        <img src="assets/img/products/fairway-lm551b.webp" alt="Baroness LM551B fairway mower" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
       </div>
       <div class="product-details">
         <h3>Fairway Mower</h3>
@@ -941,9 +938,9 @@
 
     <!-- GM2810 -->
     <div class="product-card">
-      <div class="product-image" style="background:#fff;">
+      <div class="product-image" style="background:#0f2417;">
         <div class="product-badge">Rough</div>
-        <img src="assets/img/products/rough-gm2810.webp" alt="Baroness GM2810 5-deck rotary rough mower" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:1.25rem;">
+        <img src="assets/img/products/rough-gm2810.webp" alt="Baroness GM2810 5-deck rotary rough mower" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
       </div>
       <div class="product-details">
         <h3>5-Deck Rotary Rough Mower</h3>
@@ -961,9 +958,9 @@
 
     <!-- LM3551 -->
     <div class="product-card">
-      <div class="product-image" style="background:#fff;">
+      <div class="product-image" style="background:#0f2417;">
         <div class="product-badge">Surrounds</div>
-        <img src="assets/img/products/surrounds-lm351.webp" alt="Baroness triplex surrounds mower" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:1.25rem;">
+        <img src="assets/img/products/surrounds-lm351.webp" alt="Baroness triplex surrounds mower" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
       </div>
       <div class="product-details">
         <h3>Triplex Surrounds Mower</h3>
