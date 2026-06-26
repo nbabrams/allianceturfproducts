@@ -24,7 +24,8 @@
 <meta name="theme-color" content="#111111">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<meta name="description" content="Alliance Turf Products delivers Baroness mowing equipment — forged with Japanese sword-making steel — at $15–25K less than the top competitor, with 2-week delivery and personal service from two industry veterans who answer their own phones.">
+<link rel="canonical" href="https://allianceturfproducts.com/">
+<meta name="description" content="Baroness mowing equipment for Southern California & Las Vegas golf courses — championship cut quality, thousands less than the top competitor, and ~2-week delivery. Schedule a demo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -444,6 +445,11 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* ═══════════════ RESPONSIVE ═══════════════ */
+  .footer-contact { display: flex; flex-direction: column; gap: 5px; font-size: 13px; align-items: center; }
+  .footer-contact a { color: rgba(255,255,255,0.72); text-decoration: none; }
+  .footer-contact a:hover { color: #fff; }
+  .footer-contact span { color: rgba(255,255,255,0.5); }
+
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .nav-links.open {
@@ -482,13 +488,32 @@
   .map-tip.show { opacity:1; }
   @media (max-width:900px){ .territory-grid { grid-template-columns:1fr; gap:2rem; } }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Alliance Turf Products",
+  "description": "Exclusive Baroness mowing equipment distributor for Southern California, Las Vegas, and the Southwest.",
+  "url": "https://allianceturfproducts.com/",
+  "telephone": "+1-949-338-8307",
+  "email": "j.harkness@allianceturfproducts.com",
+  "image": "https://allianceturfproducts.com/assets/img/og.jpg",
+  "brand": { "@type": "Brand", "name": "Baroness" },
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Southern California" },
+    { "@type": "AdministrativeArea", "name": "Las Vegas, Nevada" },
+    { "@type": "AdministrativeArea", "name": "Arizona" }
+  ],
+  "slogan": "The Cut Speaks For Itself."
+}
+</script>
 </head>
 <body>
 
 <!-- ═══════════════ NAVIGATION ═══════════════ -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-brand" onclick="showPage('home'); return false;">
+    <a href="/" class="nav-brand" onclick="showPage('home'); return false;">
       <div class="nav-brand-mark">ATP</div>
       <div class="nav-brand-text">
         <span class="nav-brand-name">Alliance Turf Products</span>
@@ -859,6 +884,7 @@
       </div>
       <button class="form-submit" type="submit">Request Your Demo →</button>
       <p id="formStatus" role="status" style="margin-top:1rem;font-size:14px;line-height:1.5;display:none;"></p>
+      <p style="margin-top:0.75rem;font-size:12px;line-height:1.5;color:var(--text-light);">We'll only use this to contact you about your demo — no spam, ever.</p>
       </form>
     </div>
   </div>
@@ -875,7 +901,7 @@
 <section style="padding-top: 120px; background: var(--deep-black); padding-bottom: 4rem;">
   <div style="max-width: 1100px; margin: 0 auto; padding: 0 2rem; text-align: center;">
     <div class="hero-tag" style="justify-content: center; opacity: 1; animation: none;">Baroness Equipment</div>
-    <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); color: white; margin-bottom: 1rem;">Forged in Japan. <span style="color: var(--baroness-red);">Delivered by Us.</span></h1>
+    <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); color: white; margin-bottom: 1rem;">Forged in Japan. <span style="color: var(--baroness-red);">Delivered by Us.</span></h2>
     <p style="font-size: 1.1rem; color: #ffffff; max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 400;">
       Championship-quality mowing equipment at $15–25K less than the top competitor, with ~2 week delivery from $3M in inventory. Every reel handmade. Every delivery trained on personally.
     </p>
@@ -1012,6 +1038,11 @@
     <div class="footer-brand">
       <div class="footer-brand-mark">ATP</div>
       <span class="footer-copy">© 2026 Alliance Turf Products</span>
+    </div>
+    <div class="footer-contact">
+      <a href="tel:+19493388307">(949) 338-8307</a>
+      <a href="mailto:j.harkness@allianceturfproducts.com">j.harkness@allianceturfproducts.com</a>
+      <span>Serving Southern California, Las Vegas &amp; the Southwest</span>
     </div>
     <ul class="footer-links">
       <li><a href="#why" onclick="showPage('home')">Why ATP</a></li>
