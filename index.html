@@ -526,11 +526,11 @@
       </div>
     </a>
     <ul class="nav-links">
-      <li><a href="#why" onclick="showPage('home')">Why ATP</a></li>
+      <li><a href="#why" onclick="showPage('home', this.getAttribute('href')); return false;">Why ATP</a></li>
       <li><a href="#" onclick="showPage('products'); return false;">Equipment</a></li>
-      <li><a href="#results" onclick="showPage('home')">Results</a></li>
-      <li><a href="#about" onclick="showPage('home')">About</a></li>
-      <li><a href="#contact" class="nav-cta" onclick="showPage('home')">Request a Demo</a></li>
+      <li><a href="#results" onclick="showPage('home', this.getAttribute('href')); return false;">Results</a></li>
+      <li><a href="#about" onclick="showPage('home', this.getAttribute('href')); return false;">About</a></li>
+      <li><a href="#contact" class="nav-cta" onclick="showPage('home', this.getAttribute('href')); return false;">Request a Demo</a></li>
     </ul>
     <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -580,7 +580,7 @@
 <section class="problem-section" id="why">
   <div class="section-inner reveal">
     <div class="section-tag">The Industry Problem</div>
-    <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); color: var(--deep-black); max-width: 700px; margin-bottom: 1rem;">
+    <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); color: var(--deep-black); max-width: 960px; margin-bottom: 1rem;">
       You Shouldn't Have to Wait 18 Months to Overpay for a Mower.
     </h2>
 
@@ -992,7 +992,7 @@
 
   <!-- Coming Soon -->
   <div class="products-coming-soon">
-    <p><strong>More equipment coming soon</strong> — ATP is expanding beyond core mowing equipment to include golf carts and additional Baroness product lines. Stay tuned, or <a href="#contact" onclick="showPage('home')" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">contact us</a> to learn what's next.</p>
+    <p><strong>More equipment coming soon</strong> — ATP is expanding beyond core mowing equipment to include golf carts and additional Baroness product lines. Stay tuned, or <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">contact us</a> to learn what's next.</p>
   </div>
 
   <!-- Secondary Verticals Callout -->
@@ -1002,14 +1002,14 @@
       <p style="font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 1.5rem;">
         Your turf matters too. ATP delivers the same Baroness quality trusted on championship courses to sports fields, parks, equestrian facilities, and memorial grounds. Fast delivery. Competitive price. A vendor who actually picks up when you call.
       </p>
-      <a href="#contact" onclick="showPage('home')" class="btn btn-outline" style="padding: 12px 24px; font-size: 13px;">Get in Touch →</a>
+      <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" class="btn btn-outline" style="padding: 12px 24px; font-size: 13px;">Get in Touch →</a>
     </div>
     <div style="background: var(--deep-black); padding: 2.5rem; border-radius: 4px; color: white;">
       <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">For Owners & GMs</h3>
       <p style="font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 1.5rem;">
         Same quality of cut. $15–25K less per unit. Delivered in weeks, not years. Your superintendent already saw the results on your greens. The math favors the switch.
       </p>
-      <a href="#contact" onclick="showPage('home')" class="btn btn-outline" style="padding: 12px 24px; font-size: 13px;">Get in Touch →</a>
+      <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" class="btn btn-outline" style="padding: 12px 24px; font-size: 13px;">Get in Touch →</a>
     </div>
   </div>
 
@@ -1031,11 +1031,11 @@
       <span>Serving Southern California, Las Vegas &amp; the Southwest</span>
     </div>
     <ul class="footer-links">
-      <li><a href="#why" onclick="showPage('home')">Why ATP</a></li>
+      <li><a href="#why" onclick="showPage('home', this.getAttribute('href')); return false;">Why ATP</a></li>
       <li><a href="#" onclick="showPage('products'); return false;">Equipment</a></li>
-      <li><a href="#results" onclick="showPage('home')">Results</a></li>
-      <li><a href="#about" onclick="showPage('home')">About</a></li>
-      <li><a href="#contact" onclick="showPage('home')">Contact</a></li>
+      <li><a href="#results" onclick="showPage('home', this.getAttribute('href')); return false;">Results</a></li>
+      <li><a href="#about" onclick="showPage('home', this.getAttribute('href')); return false;">About</a></li>
+      <li><a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;">Contact</a></li>
     </ul>
     <div class="footer-baroness">
       Exclusive <span>Baroness</span> Distributor
@@ -1045,11 +1045,15 @@
 
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script>
-function showPage(page) {
+function showPage(page, anchor) {
   document.getElementById('page-home').classList.remove('active');
   document.getElementById('page-products').classList.remove('active');
   document.getElementById('page-' + page).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => {
+    const t = anchor && anchor !== '#' ? document.querySelector(anchor) : null;
+    if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  }, 0);
   // Re-trigger reveals on the new page
   setTimeout(() => {
     document.querySelectorAll('.reveal').forEach(el => {
@@ -1069,7 +1073,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (e) => {
       const href = a.getAttribute('href');
-      if (href === '#') return;
+      if (href === '#' || a.hasAttribute('onclick')) return;
       const target = document.querySelector(href);
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
