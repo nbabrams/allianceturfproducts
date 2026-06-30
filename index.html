@@ -455,6 +455,14 @@
   .footer-contact a:hover { color: #fff; }
   .footer-contact span { color: rgba(255,255,255,0.5); }
 
+  /* ── Outcome (better grass/golf) section ── */
+  .outcome-section { padding: 7rem 2rem; background: var(--white); }
+  .outcome-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .outcome-content h2 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); color: var(--deep-black); line-height: 1.25; margin-bottom: 1.5rem; }
+  .outcome-content h2 em { font-style: normal; color: var(--baroness-red); }
+  .outcome-content p { font-size: 15px; line-height: 1.8; color: var(--text-secondary); max-width: 460px; }
+  .outcome-visual img { width: 100%; height: auto; display: block; }
+
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .nav-links.open {
@@ -467,7 +475,7 @@
     .nav-links.open a { display: block; padding: 14px 0; }
     .nav-links.open .nav-cta { text-align: center; margin-top: 0.5rem; }
     .mobile-menu-btn { display: block; }
-    .problem-grid, .value-grid, .testimonial-grid, .craft-grid, .about-grid, .contact-grid, .mechanic-grid, .product-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .problem-grid, .value-grid, .testimonial-grid, .craft-grid, .about-grid, .contact-grid, .mechanic-grid, .product-grid, .outcome-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .verticals-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
     .value-grid { gap: 1rem; }
     .hero { min-height: auto; flex-direction: column; align-items: stretch; padding-bottom: 3.5rem; }
@@ -687,6 +695,19 @@
         <li>Same platform for 30 years — learn it once, maintain it forever</li>
         <li>Greens mowers, fairway units, rough mowers & more</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- A BETTER MOWER MEANS BETTER GRASS -->
+<section class="outcome-section">
+  <div class="outcome-grid reveal">
+    <div class="outcome-content">
+      <h2>A Better Mower Means <em>Better Grass</em>.<br>Better Grass Means <em>Better Golf</em>.<br>Better Golf Means <em>Happy Golfers</em>!</h2>
+      <p>Your members will notice the difference and thank you for investing in the course — while your board members will thank you for saving money.</p>
+    </div>
+    <div class="outcome-visual">
+      <img src="assets/img/golfer-mower.webp" alt="Golfer mid-swing beside a Baroness fairway mower" loading="lazy">
     </div>
   </div>
 </section>
