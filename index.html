@@ -513,7 +513,6 @@
   "description": "Exclusive Baroness mowing equipment distributor for Southern California, Las Vegas, and the Southwest.",
   "url": "https://allianceturfproducts.com/",
   "telephone": "+1-949-338-8307",
-  "email": "j.harkness@allianceturfproducts.com",
   "image": "https://allianceturfproducts.com/assets/img/og.jpg",
   "brand": { "@type": "Brand", "name": "Baroness" },
   "areaServed": [
@@ -822,14 +821,14 @@
         <div class="contact-detail-icon">☎</div>
         <div class="contact-detail-text">
           <strong>Call John Directly</strong>
-          <span>He actually picks up — <a href="tel:+19493388307">(949) 338-8307</a></span>
+          <span><a href="tel:+19493388307">(949) 338-8307</a></span>
         </div>
       </div>
       <div class="contact-detail">
         <div class="contact-detail-icon">✉</div>
         <div class="contact-detail-text">
           <strong>Email Us</strong>
-          <span><a href="mailto:j.harkness@allianceturfproducts.com">j.harkness@allianceturfproducts.com</a></span>
+          <span><a class="js-email" data-u="j.harkness" data-d="allianceturfproducts.com" href="#">Email us</a></span>
         </div>
       </div>
       <div class="contact-detail">
@@ -1059,7 +1058,7 @@
     </div>
     <div class="footer-contact">
       <a href="tel:+19493388307">(949) 338-8307</a>
-      <a href="mailto:j.harkness@allianceturfproducts.com">j.harkness@allianceturfproducts.com</a>
+      <a class="js-email" data-u="j.harkness" data-d="allianceturfproducts.com" href="#">Email us</a>
       <span>Serving Southern California, Las Vegas &amp; the Southwest</span>
     </div>
     <ul class="footer-links">
@@ -1111,6 +1110,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Assemble obfuscated emails (anti-scrape)
+  document.querySelectorAll('.js-email').forEach(function(a){
+    var e = a.getAttribute('data-u') + '@' + a.getAttribute('data-d');
+    a.href = 'mailto:' + e;
+    a.textContent = e;
+  });
+
   // Mobile nav toggle
   const menuBtn = document.querySelector('.mobile-menu-btn');
   const navLinks = document.querySelector('.nav-links');
@@ -1126,6 +1132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 (function () {
   // ░░░ PASTE YOUR ZAPIER "Catch Hook" WEBHOOK URL BETWEEN THE QUOTES ░░░
   const DEMO_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/28039145/42d4ph6/";
+  const ATP_EMAIL = "j.harkness" + String.fromCharCode(64) + "allianceturfproducts.com";
 
   const form = document.getElementById('demoForm');
   if (!form) return;
@@ -1153,7 +1160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     data.append('submitted_at', new Date().toISOString());
 
     if (!DEMO_WEBHOOK_URL) {
-      show('Form not yet connected. Please call (949) 338-8307 or email j.harkness@allianceturfproducts.com.', false);
+      show('Form not yet connected. Please call (949) 338-8307 or email ' + ATP_EMAIL + '.', false);
       return;
     }
 
@@ -1167,7 +1174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(function () {
         btn.disabled = false; btn.textContent = 'Request Your Demo →';
-        show('Something went wrong. Please call (949) 338-8307 or email j.harkness@allianceturfproducts.com.', false);
+        show('Something went wrong. Please call (949) 338-8307 or email ' + ATP_EMAIL + '.', false);
       });
   });
 })();
