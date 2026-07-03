@@ -467,6 +467,9 @@
   .mower-band { background: var(--white); padding: clamp(2.5rem, 5vw, 4.5rem) 1.5rem; text-align: center; }
   .mower-band img { width: 100%; max-width: 1200px; height: auto; display: inline-block; }
 
+  .nav-logo { height: 40px; width: auto; display: block; }
+  .footer-logo { height: 30px; width: auto; display: block; }
+
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .nav-links.open {
@@ -529,12 +532,8 @@
 <!-- ═══════════════ NAVIGATION ═══════════════ -->
 <nav>
   <div class="nav-inner">
-    <a href="/" class="nav-brand" onclick="showPage('home'); return false;">
-      <div class="nav-brand-mark">ATP</div>
-      <div class="nav-brand-text">
-        <span class="nav-brand-name">Alliance Turf Products</span>
-        <span class="nav-brand-sub">Exclusive Baroness Distributor</span>
-      </div>
+    <a href="/" class="nav-brand" onclick="showPage('home'); return false;" aria-label="Alliance Turf Products — home">
+      <img src="assets/img/ATP-Logo.svg" alt="Alliance Turf Products" class="nav-logo">
     </a>
     <ul class="nav-links">
       <li><a href="#why" onclick="showPage('home', this.getAttribute('href')); return false;">Why ATP</a></li>
@@ -1053,7 +1052,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-brand-mark">ATP</div>
+      <img src="assets/img/ATP-Logo.svg" alt="Alliance Turf Products" class="footer-logo">
       <span class="footer-copy">© 2026 Alliance Turf Products</span>
     </div>
     <div class="footer-contact">
