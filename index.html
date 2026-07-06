@@ -537,7 +537,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="#why" onclick="showPage('home', this.getAttribute('href')); return false;">Why ATP</a></li>
-      <li><a href="#" onclick="showPage('products'); return false;">Equipment</a></li>
+      <li><a href="#equipment" onclick="showPage('products'); location.hash='equipment'; return false;">Equipment</a></li>
       <li><a href="#results" onclick="showPage('home', this.getAttribute('href')); return false;">Results</a></li>
       <li><a href="#about" onclick="showPage('home', this.getAttribute('href')); return false;">About</a></li>
       <li><a href="#contact" class="nav-cta" onclick="showPage('home', this.getAttribute('href')); return false;">Request a Demo</a></li>
@@ -563,7 +563,7 @@
     </p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary">Schedule a Demo →</a>
-      <a href="#" class="btn btn-outline" onclick="showPage('products'); return false;">View Equipment</a>
+      <a href="#equipment" class="btn btn-outline" onclick="showPage('products'); location.hash='equipment'; return false;">View Equipment</a>
     </div>
   </div>
 </section>
@@ -1062,7 +1062,7 @@
     </div>
     <ul class="footer-links">
       <li><a href="#why" onclick="showPage('home', this.getAttribute('href')); return false;">Why ATP</a></li>
-      <li><a href="#" onclick="showPage('products'); return false;">Equipment</a></li>
+      <li><a href="#equipment" onclick="showPage('products'); location.hash='equipment'; return false;">Equipment</a></li>
       <li><a href="#results" onclick="showPage('home', this.getAttribute('href')); return false;">Results</a></li>
       <li><a href="#about" onclick="showPage('home', this.getAttribute('href')); return false;">About</a></li>
       <li><a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;">Contact</a></li>
@@ -1094,6 +1094,7 @@ function showPage(page, anchor) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (location.hash === '#equipment') showPage('products');
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
