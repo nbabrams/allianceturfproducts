@@ -104,6 +104,21 @@
     padding: 10px 20px; border-radius: 3px; font-weight: 600 !important; transition: background 0.2s !important;
   }
   .nav-cta:hover { background: var(--baroness-red-dark) !important; }
+  /* ── Equipment dropdown ── */
+  .nav-dropdown { position: relative; display: flex; align-items: center; height: 72px; }
+  .nav-drop-toggle .drop-caret { font-size: 9px; opacity: 0.6; margin-left: 5px; display: inline-block; transition: transform 0.2s; }
+  .nav-dropdown:hover .drop-caret, .nav-dropdown:focus-within .drop-caret { transform: translateY(1px); opacity: 1; }
+  .nav-drop-menu {
+    position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    display: none; list-style: none; min-width: 190px; padding: 6px 0;
+    background: rgba(17,17,17,0.98); backdrop-filter: blur(12px);
+    border: 1px solid rgba(196,30,42,0.3); border-top: 2px solid var(--baroness-red);
+    border-radius: 0 0 4px 4px;
+  }
+  .nav-dropdown:hover .nav-drop-menu, .nav-dropdown:focus-within .nav-drop-menu { display: block; }
+  .nav-drop-menu li { width: 100%; }
+  .nav-drop-menu a { display: block; padding: 11px 20px; white-space: nowrap; }
+  .nav-drop-menu a:hover { background: rgba(255,255,255,0.05); }
   .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
   .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; transition: 0.3s; }
 
@@ -441,8 +456,8 @@
   .footer-baroness span { color: var(--baroness-red); font-weight: 600; }
 
   /* ═══════════════ PAGE NAV ═══════════════ */
-  .page-home, .page-products { display: none; }
-  .page-home.active, .page-products.active { display: block; }
+  .page-home, .page-products, .page-vehicles { display: none; }
+  .page-home.active, .page-products.active, .page-vehicles.active { display: block; }
 
   /* ═══════════════ ANIMATIONS ═══════════════ */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -480,6 +495,12 @@
     .nav-links.open li { width: 100%; }
     .nav-links.open a { display: block; padding: 14px 0; }
     .nav-links.open .nav-cta { text-align: center; margin-top: 0.5rem; }
+    .nav-links.open .nav-dropdown { display: block; height: auto; }
+    .nav-links.open .nav-drop-menu {
+      display: block; position: static; transform: none;
+      background: transparent; border: none; padding: 0 0 0 1.25rem; min-width: 0;
+    }
+    .nav-links.open .nav-drop-menu a { padding: 12px 0; color: rgba(255,255,255,0.55); }
     .mobile-menu-btn { display: block; }
     .problem-grid, .value-grid, .testimonial-grid, .craft-grid, .about-grid, .contact-grid, .mechanic-grid, .product-grid, .outcome-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .verticals-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
@@ -516,7 +537,10 @@
   "url": "https://allianceturfproducts.com/",
   "telephone": "+1-949-338-8307",
   "image": "https://allianceturfproducts.com/assets/img/og.jpg",
-  "brand": { "@type": "Brand", "name": "Baroness" },
+  "brand": [
+    { "@type": "Brand", "name": "Baroness" },
+    { "@type": "Brand", "name": "Massimo" }
+  ],
   "areaServed": [
     { "@type": "AdministrativeArea", "name": "Southern California" },
     { "@type": "AdministrativeArea", "name": "Las Vegas, Nevada" },
@@ -536,7 +560,13 @@
     </a>
     <ul class="nav-links">
       <li><a href="#why" onclick="showPage('home', this.getAttribute('href')); return false;">Why ATP</a></li>
-      <li><a href="#equipment" onclick="showPage('products'); location.hash='equipment'; return false;">Equipment</a></li>
+      <li class="nav-dropdown">
+        <a href="#equipment" class="nav-drop-toggle" onclick="showPage('products'); location.hash='equipment'; return false;" aria-haspopup="true">Equipment <span class="drop-caret">▾</span></a>
+        <ul class="nav-drop-menu">
+          <li><a href="#equipment" onclick="showPage('products'); location.hash='equipment'; return false;">Mowers</a></li>
+          <li><a href="#vehicles" onclick="showPage('vehicles'); location.hash='vehicles'; return false;">Utility Vehicles</a></li>
+        </ul>
+      </li>
       <li><a href="#results" onclick="showPage('home', this.getAttribute('href')); return false;">Results</a></li>
       <li><a href="#about" onclick="showPage('home', this.getAttribute('href')); return false;">About</a></li>
       <li><a href="#contact" class="nav-cta" onclick="showPage('home', this.getAttribute('href')); return false;">Request a Demo</a></li>
@@ -883,6 +913,7 @@
           <option>Surrounds Mowers (LM351)</option>
           <option>Fairway Mowers (LM551B)</option>
           <option>Rough Mowers (GM2810)</option>
+          <option>Utility Vehicles (Massimo Electric)</option>
           <option>Multiple Units / Full Fleet</option>
           <option>Robotic Mowers (Coming Soon)</option>
           <option>Parts & Service</option>
@@ -915,10 +946,10 @@
 
 <section style="padding-top: 120px; background: var(--deep-black); padding-bottom: 4rem;">
   <div style="max-width: 1100px; margin: 0 auto; padding: 0 2rem; text-align: center;">
-    <div class="hero-tag" style="justify-content: center; opacity: 1; animation: none;">Baroness Equipment</div>
+    <div class="hero-tag" style="justify-content: center; opacity: 1; animation: none;">Baroness Mowers</div>
     <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); color: white; margin-bottom: 1rem;">Forged in Japan. <span style="color: var(--baroness-red);">Delivered by Us.</span></h2>
     <p style="font-size: 1.1rem; color: #ffffff; max-width: 600px; margin: 0 auto; line-height: 1.7; font-weight: 400;">
-      Superior-quality mowing equipment at thousands less than the top competitor, with ~2 week delivery from a robust inventory. Every reel is handmade. Every delivery trained on personally.
+      Superior-quality Baroness mowers at thousands less than the top competitor, with ~2 week delivery from a robust inventory. Every reel is handmade. Every delivery trained on personally.
     </p>
   </div>
 </section>
@@ -927,8 +958,8 @@
 
 <section class="products-section">
   <div class="products-header">
-    <div style="display: inline-flex; color: var(--baroness-red); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.5rem;">Core Equipment Line</div>
-    <h2>The <em>Equipment</em></h2>
+    <div style="display: inline-flex; color: var(--baroness-red); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.5rem;">Core Mower Line</div>
+    <h2>The <em>Mowers</em></h2>
     <p>Four core machines that cover greens, surrounds, fairways, and rough — all built with the same Japanese precision steel and all backed by personal training from Lionel on every delivery.</p>
   </div>
 
@@ -1018,7 +1049,7 @@
 
   <!-- Coming Soon -->
   <div class="products-coming-soon">
-    <p><strong>More equipment coming soon</strong> — ATP is expanding beyond core mowing equipment to include utility vehicles and additional Baroness product lines. Stay tuned, or <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">contact us</a> to learn what's next.</p>
+    <p><strong>Beyond mowers</strong> — ATP now carries Massimo electric utility vehicles: <a href="#vehicles" onclick="showPage('vehicles'); location.hash='vehicles'; return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">see the Utility Vehicles line →</a> Additional Baroness product lines are coming soon, or <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">contact us</a> to learn what's next.</p>
   </div>
 
   <!-- Secondary Verticals Callout -->
@@ -1044,6 +1075,84 @@
 </div><!-- end page-products -->
 
 
+<!-- ═══════════════════════════════════════════ -->
+<!-- UTILITY VEHICLES PAGE                       -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page-vehicles" id="page-vehicles">
+
+<section style="padding-top: 120px; background: var(--deep-black); padding-bottom: 4rem;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 2rem; text-align: center;">
+    <div class="hero-tag" style="justify-content: center; opacity: 1; animation: none;">Massimo Electric Utility Vehicles</div>
+    <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); color: white; margin-bottom: 1rem;">Work Quiet. <span style="color: var(--baroness-red);">Haul Heavy.</span></h2>
+    <p style="font-size: 1.1rem; color: #ffffff; max-width: 640px; margin: 0 auto; line-height: 1.7; font-weight: 400;">
+      Electric, emission-free utility vehicles with 1,100-lb hydraulic dump beds and up to 45 miles of range per charge — sold, delivered, and supported by the same ATP team behind your mowers.
+    </p>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<section class="products-section">
+  <div class="products-header">
+    <div style="display: inline-flex; color: var(--baroness-red); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.5rem;">Electric Utility Line</div>
+    <h2>The <em>Vehicles</em></h2>
+    <p>Two configurations of the Massimo MVR Cargo Max platform — open-air or fully enclosed with heat and A/C. Both electric, both charge from a standard outlet, and both built to carry a real workload.</p>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- MVR Cargo Max Lithium -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Open-Air</div>
+        <img src="assets/img/products/utility-mvr-lithium.webp" alt="Massimo MVR Cargo Max Lithium electric utility vehicle in Ultra Red" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:1.25rem;">
+      </div>
+      <div class="product-details">
+        <h3>Electric Utility Vehicle</h3>
+        <div class="product-model">Massimo MVR Cargo Max Lithium</div>
+        <p>A quiet, emission-free workhorse for daily course and facility work. A 48V 5kW motor and maintenance-free lithium battery move a 1,100-lb load on a hydraulic power-dump bed — with a rearview camera, full LED lighting, and marine-grade seats standard.</p>
+        <ul class="product-specs">
+          <li><span>Battery</span><strong>51.2V 105Ah lithium</strong></li>
+          <li><span>Range / Top Speed</span><strong>Up to 45 mi / 25 MPH</strong></li>
+          <li><span>Dump Bed</span><strong>1,100 lb, hydraulic (13 cu ft)</strong></li>
+          <li><span>Charging</span><strong>Standard US outlet</strong></li>
+        </ul>
+        <a href="https://massimomotor.com/products/mvr-cargo-max-lithium-7" target="_blank" rel="noopener" class="product-link">Full specs at massimomotor.com →</a>
+      </div>
+    </div>
+
+    <!-- MVR Cargo Max HVAC Lithium -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Enclosed Cab</div>
+        <img src="assets/img/products/utility-mvr-hvac.webp" alt="Massimo MVR Cargo Max HVAC Lithium enclosed-cab electric utility vehicle in Ultra Red" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:1.25rem;">
+      </div>
+      <div class="product-details">
+        <h3>Enclosed Cab with Heat &amp; A/C</h3>
+        <div class="product-model">Massimo MVR Cargo Max HVAC Lithium</div>
+        <p>The same electric Cargo Max platform in a fully enclosed cabin with integrated heating and air conditioning — year-round comfort through desert summers and early-morning cold, with the same 1,100-lb hydraulic dump bed out back.</p>
+        <ul class="product-specs">
+          <li><span>Cabin</span><strong>Fully enclosed, heat + A/C</strong></li>
+          <li><span>Motor / Range</span><strong>48V 5kW / up to 45 mi</strong></li>
+          <li><span>Dump Bed</span><strong>1,100 lb, hydraulic (13 cu ft)</strong></li>
+          <li><span>Charging</span><strong>Standard US outlet</strong></li>
+        </ul>
+        <a href="https://massimomotor.com/products/mvr-cargo-max-hvac-lithium-ultra-red" target="_blank" rel="noopener" class="product-link">Full specs at massimomotor.com →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Vehicles CTA -->
+  <div class="products-coming-soon" style="border-style: solid;">
+    <p><strong>Want one working on your property?</strong> Call John at <a href="tel:+19493388307" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">(949) 338-8307</a> or <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">request a demo</a> — same fast delivery and personal service as every ATP machine.</p>
+  </div>
+
+</section>
+
+</div><!-- end page-vehicles -->
+
+
 <!-- ═══════════════ FOOTER (shared) ═══════════════ -->
 <footer>
   <div class="footer-inner">
@@ -1058,7 +1167,8 @@
     </div>
     <ul class="footer-links">
       <li><a href="#why" onclick="showPage('home', this.getAttribute('href')); return false;">Why ATP</a></li>
-      <li><a href="#equipment" onclick="showPage('products'); location.hash='equipment'; return false;">Equipment</a></li>
+      <li><a href="#equipment" onclick="showPage('products'); location.hash='equipment'; return false;">Mowers</a></li>
+      <li><a href="#vehicles" onclick="showPage('vehicles'); location.hash='vehicles'; return false;">Utility Vehicles</a></li>
       <li><a href="#results" onclick="showPage('home', this.getAttribute('href')); return false;">Results</a></li>
       <li><a href="#about" onclick="showPage('home', this.getAttribute('href')); return false;">About</a></li>
       <li><a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;">Contact</a></li>
@@ -1072,8 +1182,9 @@
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script>
 function showPage(page, anchor) {
-  document.getElementById('page-home').classList.remove('active');
-  document.getElementById('page-products').classList.remove('active');
+  ['home', 'products', 'vehicles'].forEach(function(p) {
+    document.getElementById('page-' + p).classList.remove('active');
+  });
   document.getElementById('page-' + page).classList.add('active');
   setTimeout(() => {
     const t = anchor && anchor !== '#' ? document.querySelector(anchor) : null;
@@ -1091,6 +1202,7 @@ function showPage(page, anchor) {
 
 document.addEventListener('DOMContentLoaded', () => {
   if (location.hash === '#equipment') showPage('products');
+  if (location.hash === '#vehicles') showPage('vehicles');
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
