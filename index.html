@@ -1235,12 +1235,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<!-- ═══════════════ DEMO FORM → ZAPIER ═══════════════ -->
+<!-- ═══════════════ DEMO FORM → CLOUDFLARE WORKER → AIRTABLE ═══════════════ -->
 <script>
 (function () {
-  // ░░░ PASTE YOUR ZAPIER "Catch Hook" WEBHOOK URL BETWEEN THE QUOTES ░░░
-  const DEMO_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/28039145/42d4ph6/";
+  // ░░░ PASTE THE CLOUDFLARE WORKER URL BETWEEN THE QUOTES (see cloudflare-worker/README.md) ░░░
+  const DEMO_ENDPOINT = "https://atp-demo-form.nick-a2a.workers.dev";
   const ATP_EMAIL = "j.harkness" + String.fromCharCode(64) + "allianceturfproducts.com";
+  const FALLBACK = 'Please call (949) 338-8307 or email ' + ATP_EMAIL + '.';
 
   const form = document.getElementById('demoForm');
   if (!form) return;
@@ -1255,26 +1256,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (form.company_website && form.company_website.value) return; // honeypot
     const name = form.name.value.trim();
     const email = form.email.value.trim();
     if (!name || !email) { show('Please add your name and email so we can reach you.', false); return; }
 
-    const data = new URLSearchParams();
-    ['name','role','facility','email','phone','interest','notes'].forEach(function (k) {
-      data.append(k, form[k] ? form[k].value : '');
+    const payload = {};
+    ['name','role','facility','email','phone','interest','notes','company_website'].forEach(function (k) {
+      payload[k] = form[k] ? form[k].value : '';
     });
-    data.append('source', 'allianceturfproducts.com');
-    data.append('submitted_at', new Date().toISOString());
+    payload.source = 'allianceturfproducts.com';
+    payload.submitted_at = new Date().toISOString();
 
-    if (!DEMO_WEBHOOK_URL) {
-      show('Form not yet connected. Please call (949) 338-8307 or email ' + ATP_EMAIL + '.', false);
-      return;
-    }
+    if (!DEMO_ENDPOINT) { show('Form not yet connected. ' + FALLBACK, false); return; }
 
     btn.disabled = true; btn.textContent = 'Sending…';
-    fetch(DEMO_WEBHOOK_URL, { method: 'POST', body: data })
-      .then(function () {
+    fetch(DEMO_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok && j.ok !== false, j: j }; }); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.j.error || 'Request failed');
         form.reset();
         btn.style.display = 'none';
         show("Thanks — we've got your request. John will reach out shortly.", true);
@@ -1282,7 +1285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(function () {
         btn.disabled = false; btn.textContent = 'Request Your Demo →';
-        show('Something went wrong. Please call (949) 338-8307 or email ' + ATP_EMAIL + '.', false);
+        show('Something went wrong. ' + FALLBACK, false);
       });
   });
 })();

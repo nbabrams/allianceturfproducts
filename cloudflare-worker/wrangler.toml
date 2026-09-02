@@ -1,0 +1,8 @@
+name = "atp-demo-form"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# Secrets are NOT stored here. Set them with:
+#   npx wrangler secret put AIRTABLE_TOKEN
+#   npx wrangler secret put AIRTABLE_BASE_ID
+#   npx wrangler secret put AIRTABLE_TABLE
