@@ -478,8 +478,32 @@
   .outcome-content p { font-size: 15px; line-height: 1.8; color: var(--text-secondary); max-width: 460px; }
   .outcome-visual img { width: 100%; height: auto; display: block; }
 
-  .mower-band { background: var(--white); padding: clamp(2.5rem, 5vw, 4.5rem) 1.5rem; text-align: center; }
-  .mower-band img { width: 100%; max-width: 1200px; height: auto; display: inline-block; }
+  /* ── Equipment cards (Mowers / UTVs) ── */
+  .equipment-cards { background: var(--white); padding: clamp(1.5rem, 3vw, 2.5rem) 2rem; }
+  .equipment-cards-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+  .equipment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .equipment-card {
+    display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    padding: 2.5rem 1rem 2rem; background: var(--white);
+    border: 1.5px solid rgba(17,17,17,0.14); border-radius: 12px;
+    text-decoration: none; color: var(--deep-black);
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .equipment-card:hover, .equipment-card:focus-visible {
+    border-color: var(--baroness-red); transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(17,17,17,0.08); outline: none;
+  }
+  .equipment-card h3 {
+    font-family: 'Oswald', sans-serif; font-size: clamp(1.6rem, 2.6vw, 2.25rem); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.02em; line-height: 1; margin: 0;
+  }
+  .equipment-card img { width: 100%; max-width: 480px; height: auto; display: block; }
+  .equipment-card .btn { padding: 12px 24px; font-size: 13px; }
+  .equipment-card:hover .btn-primary { background: var(--baroness-red-dark); }
+  /* ── Lifestyle band ── */
+  .lifestyle-band { background: var(--deep-black); padding: 0; }
+  .lifestyle-band-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .lifestyle-band img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
 
   .nav-logo { height: 50px; width: auto; display: block; }
   .footer-logo { height: 30px; width: auto; display: block; }
@@ -508,6 +532,8 @@
     .hero { min-height: auto; padding-bottom: 3rem; }
     .hero-stats-inner { flex-direction: column; gap: 1.25rem; align-items: flex-start; }
     .hero-stats-bar { padding: 2.25rem 2rem; }
+    .equipment-grid, .lifestyle-band-inner { grid-template-columns: 1fr; }
+    .equipment-card { padding: 2rem 0.75rem 1.75rem; }
     .form-row { grid-template-columns: 1fr; }
     .territory-list { flex-direction: column; align-items: center; gap: 1rem; }
     .footer-inner { flex-direction: column; text-align: center; }
@@ -617,6 +643,25 @@
   </div>
 </section>
 
+<!-- EQUIPMENT CARDS -->
+<section class="equipment-cards" id="equipment-cards">
+  <div class="equipment-cards-inner reveal">
+    <div class="section-tag">Equipment</div>
+    <div class="equipment-grid">
+      <a href="#equipment" class="equipment-card" onclick="showPage('products'); location.hash='equipment'; return false;" aria-label="View Baroness mowers">
+        <h3>Mowers</h3>
+        <img src="assets/img/card-mowers.webp" alt="Baroness greens, fairway, and rough mowers" loading="lazy" width="1000" height="358">
+        <span class="btn btn-primary">View Mowers</span>
+      </a>
+      <a href="#vehicles" class="equipment-card" onclick="showPage('vehicles'); location.hash='vehicles'; return false;" aria-label="View Massimo utility vehicles">
+        <h3>Utility Vehicles</h3>
+        <img src="assets/img/card-utvs.webp" alt="Massimo MVR Cargo Max electric utility vehicles" loading="lazy" width="1000" height="358">
+        <span class="btn btn-primary">View UTVs</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- PROBLEM / SOLUTION -->
 <section class="problem-section" id="why">
   <div class="section-inner reveal">
@@ -669,8 +714,11 @@
 </section>
 
 <!-- PRODUCT BAND -->
-<section class="mower-band">
-  <img src="assets/img/mower-hero.webp" alt="Baroness LM315 greens mower, fairway, and rough mowers side by side" loading="lazy">
+<section class="lifestyle-band">
+  <div class="lifestyle-band-inner reveal">
+    <img src="assets/img/lifestyle-mower.webp" alt="Superintendent mowing a green on a Baroness triplex mower" loading="lazy" width="1200" height="983">
+    <img src="assets/img/lifestyle-utv.webp" alt="Grounds crew hauling leaves with a Massimo utility vehicle" loading="lazy" width="1200" height="983">
+  </div>
 </section>
 
 <!-- VALUE PROPOSITIONS -->
