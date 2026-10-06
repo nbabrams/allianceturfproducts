@@ -456,8 +456,8 @@
   .footer-baroness span { color: var(--baroness-red); font-weight: 600; }
 
   /* ═══════════════ PAGE NAV ═══════════════ */
-  .page-home, .page-products, .page-vehicles { display: none; }
-  .page-home.active, .page-products.active, .page-vehicles.active { display: block; }
+  .page-home, .page-products, .page-vehicles, .page-turf, .page-grinders { display: none; }
+  .page-home.active, .page-products.active, .page-vehicles.active, .page-turf.active, .page-grinders.active { display: block; }
 
   /* ═══════════════ ANIMATIONS ═══════════════ */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -465,7 +465,7 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* ═══════════════ RESPONSIVE ═══════════════ */
-  .footer-contact { display: flex; flex-direction: column; gap: 5px; font-size: 13px; align-items: center; }
+  .footer-contact { display: flex; flex-direction: column; gap: 5px; font-size: 13px; align-items: flex-end; text-align: right; }
   .footer-contact a { color: rgba(255,255,255,0.72); text-decoration: none; }
   .footer-contact a:hover { color: #fff; }
   .footer-contact span { color: rgba(255,255,255,0.5); }
@@ -481,7 +481,7 @@
   /* ── Equipment cards (Mowers / UTVs) ── */
   .equipment-cards { background: var(--white); padding: clamp(1.5rem, 3vw, 2.5rem) 2rem; }
   .equipment-cards-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
-  .equipment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .equipment-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
   .equipment-card {
     display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
     padding: 2.5rem 1rem 2rem; background: var(--white);
@@ -494,10 +494,13 @@
     box-shadow: 0 12px 32px rgba(17,17,17,0.08); outline: none;
   }
   .equipment-card h3 {
-    font-family: 'Oswald', sans-serif; font-size: clamp(1.6rem, 2.6vw, 2.25rem); font-weight: 700;
+    font-family: 'Oswald', sans-serif; font-size: clamp(1.35rem, 1.8vw, 1.75rem); font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.02em; line-height: 1; margin: 0;
   }
-  .equipment-card img { width: 100%; max-width: 480px; height: auto; display: block; }
+  .equipment-card img { width: 100%; max-width: 480px; height: auto; display: block; border-radius: 6px; }
+  .equipment-card .btn { white-space: nowrap; }
+  @media (max-width: 1100px) { .equipment-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .equipment-grid { grid-template-columns: 1fr; } }
   .equipment-card .btn { padding: 12px 24px; font-size: 13px; }
   .equipment-card:hover .btn-primary { background: var(--baroness-red-dark); }
   /* ── Lifestyle band ── */
@@ -506,7 +509,7 @@
   .lifestyle-band img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
 
   .nav-logo { height: 50px; width: auto; display: block; }
-  .footer-logo { height: 30px; width: auto; display: block; }
+  .footer-logo { height: 45px; width: auto; display: block; }
 
   @media (max-width: 900px) {
     .nav-links { display: none; }
@@ -537,6 +540,7 @@
     .form-row { grid-template-columns: 1fr; }
     .territory-list { flex-direction: column; align-items: center; gap: 1rem; }
     .footer-inner { flex-direction: column; text-align: center; }
+    .footer-contact { align-items: center; text-align: center; }
   }
   /* ── Client map (territory) ── */
   .territory-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:center; text-align:left; }
@@ -591,6 +595,8 @@
         <ul class="nav-drop-menu">
           <li><a href="#equipment" onclick="showPage('products'); location.hash='equipment'; return false;">Mowers</a></li>
           <li><a href="#vehicles" onclick="showPage('vehicles'); location.hash='vehicles'; return false;">Utility Vehicles</a></li>
+          <li><a href="#turf" onclick="showPage('turf'); location.hash='turf'; return false;">Turf Equipment</a></li>
+          <li><a href="#grinders" onclick="showPage('grinders'); location.hash='grinders'; return false;">Grinders</a></li>
         </ul>
       </li>
       <li><a href="#results" onclick="showPage('home', this.getAttribute('href')); return false;">Results</a></li>
@@ -657,6 +663,16 @@
         <h3>Utility Vehicles</h3>
         <img src="assets/img/card-utvs.webp" alt="Massimo MVR Cargo Max electric utility vehicles" loading="lazy" width="1000" height="358">
         <span class="btn btn-primary">View UTVs</span>
+      </a>
+      <a href="#turf" class="equipment-card" onclick="showPage('turf'); location.hash='turf'; return false;" aria-label="View Turf Time trailers, aerators, and topdressers">
+        <h3>Turf Equipment</h3>
+        <img src="assets/img/card-turf.webp" alt="Turf Time heavy-duty dump trailer behind a tractor" loading="lazy" width="1000" height="358">
+        <span class="btn btn-primary">View Turf Equipment</span>
+      </a>
+      <a href="#grinders" class="equipment-card" onclick="showPage('grinders'); location.hash='grinders'; return false;" aria-label="View SIP reel and bed knife grinders">
+        <h3>Grinders</h3>
+        <img src="assets/img/card-grinders.webp" alt="SIP Peerless 7000S reel grinder and Ideal 6000 bed knife grinder" loading="lazy" width="1000" height="358">
+        <span class="btn btn-primary">View Grinders</span>
       </a>
     </div>
   </div>
@@ -962,6 +978,8 @@
           <option>Fairway Mowers (LM551B)</option>
           <option>Rough Mowers (GM2810)</option>
           <option>Utility Vehicles (Massimo Electric)</option>
+          <option>Trailers, Aerators &amp; Topdressers (Turf Time)</option>
+          <option>Reel &amp; Bed Knife Grinders (SIP)</option>
           <option>Multiple Units / Full Fleet</option>
           <option>Robotic Mowers (Coming Soon)</option>
           <option>Parts & Service</option>
@@ -1097,7 +1115,7 @@
 
   <!-- Coming Soon -->
   <div class="products-coming-soon">
-    <p><strong>Beyond mowers</strong> — ATP now carries Massimo electric utility vehicles: <a href="#vehicles" onclick="showPage('vehicles'); location.hash='vehicles'; return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">see the Utility Vehicles line →</a> Additional Baroness product lines are coming soon, or <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">contact us</a> to learn what's next.</p>
+    <p><strong>Beyond mowers</strong> — ATP also carries <a href="#vehicles" onclick="showPage('vehicles'); location.hash='vehicles'; return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">Massimo electric utility vehicles</a>, <a href="#turf" onclick="showPage('turf'); location.hash='turf'; return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">Turf Time trailers, aerators &amp; topdressers</a>, and <a href="#grinders" onclick="showPage('grinders'); location.hash='grinders'; return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">SIP reel &amp; bed knife grinders</a>. Additional Baroness product lines are coming soon, or <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">contact us</a> to learn what's next.</p>
   </div>
 
   <!-- Secondary Verticals Callout -->
@@ -1200,6 +1218,260 @@
 
 </div><!-- end page-vehicles -->
 
+<!-- ═══════════════════════════════════════════ -->
+<!-- TURF PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page-turf" id="page-turf">
+
+<section style="padding-top: 120px; background: var(--deep-black); padding-bottom: 4rem;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 2rem; text-align: center;">
+    <div class="hero-tag" style="justify-content: center; opacity: 1; animation: none;">Turf Time Equipment</div>
+    <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); color: white; margin-bottom: 1rem;">Haul It. Core It. <span style="color: var(--baroness-red);">Spread It.</span></h2>
+    <p style="font-size: 1.1rem; color: #ffffff; max-width: 640px; margin: 0 auto; line-height: 1.7; font-weight: 400;">
+      Dump trailers, core aerators, and topdressers from Turf Time Equipment — the workhorse attachments behind your mowers, sold and supported by the same ATP team.
+    </p>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<section class="products-section">
+  <div class="products-header">
+    <div style="display: inline-flex; color: var(--baroness-red); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.5rem;">Trailers · Aerators · Topdressers</div>
+    <h2>The <em>Equipment</em></h2>
+    <p>Five Turf Time machines John sells and services most: two hydraulic dump trailers, the Pro Series 3-point aerator, and two topdressers that cover everything from greens to full-fairway programs. Every one links out to Turf Time for the complete spec sheet.</p>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- Turf Time DT-6 -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Trailers</div>
+        <img src="assets/img/products/turf-dt6.webp" alt="Turf Time DT-6 medium-duty dump trailer with the bed raised" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="product-details">
+        <h3>Medium-Duty Dump Trailer</h3>
+        <div class="product-model">Turf Time DT-6</div>
+        <p>A hydraulic dump trailer sized for daily course work — mulch, sand, debris, and small equipment — without the weight of a heavy-duty unit. Swing-up removable tailgate, turf tires, and a 40° dump angle that empties clean.</p>
+        <ul class="product-specs">
+          <li><span>Capacity</span><strong>2.5 cu yd / 6,000 lb GVWR</strong></li>
+          <li><span>Box</span><strong>84" × 62"</strong></li>
+          <li><span>Tires</span><strong>26×12-12 turf</strong></li>
+          <li><span>Dump</span><strong>40° hydraulic, double-action cylinder</strong></li>
+        </ul>
+        <a href="https://www.turftimeeq.com/trailers/medium-duty-dump-trailers" target="_blank" rel="noopener" class="product-link">Full specs at turftimeeq.com →</a>
+      </div>
+    </div>
+
+    <!-- Turf Time DT-12 -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Trailers</div>
+        <img src="assets/img/products/turf-dt12.webp" alt="Turf Time DT-12 heavy-duty dump trailer dumping behind a compact tractor" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="product-details">
+        <h3>Heavy-Duty Dump Trailer</h3>
+        <div class="product-model">Turf Time DT-12</div>
+        <p>Professional strength and size for serious hauling. A welded high-strength steel frame, removable sides, and a folding tailgate handle everything from topdressing sand to tree debris — then dump it hydraulically from the seat.</p>
+        <ul class="product-specs">
+          <li><span>Capacity</span><strong>4.5 cu yd / 12,000 lb GVWR</strong></li>
+          <li><span>Box</span><strong>108" × 78"</strong></li>
+          <li><span>Tires</span><strong>26.5×14-12 turf</strong></li>
+          <li><span>Transport speed</span><strong>25 mph max</strong></li>
+        </ul>
+        <a href="https://www.turftimeeq.com/trailers/heavy-duty-dump-trailers" target="_blank" rel="noopener" class="product-link">Full specs at turftimeeq.com →</a>
+      </div>
+    </div>
+
+    <!-- Turf Time Pro Series (Pro-420 to Pro-1050) -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Aerators</div>
+        <img src="assets/img/products/turf-pro-aerator.webp" alt="Turf Time Pro Series aerator on a compact tractor's 3-point hitch" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="product-details">
+        <h3>3-Point Core Aerator</h3>
+        <div class="product-model">Turf Time Pro Series (Pro-420 to Pro-1050)</div>
+        <p>Welded-steel 3-point aerators built for golf courses and sports complexes — core up to 4" deep with coring spoons or slicing blades. Four widths from 42" to 105", greaseable bearings, and an optional 35-gal weight tank for hard ground.</p>
+        <ul class="product-specs">
+          <li><span>Working width</span><strong>39" – 102"</strong></li>
+          <li><span>Coring depth</span><strong>Up to 4"</strong></li>
+          <li><span>Pattern</span><strong>5" × 9.5"</strong></li>
+          <li><span>Hitch</span><strong>Cat. 1 3-point, 20–35 hp</strong></li>
+        </ul>
+        <a href="https://www.turftimeeq.com/aerators/pro-series-aerators" target="_blank" rel="noopener" class="product-link">Full specs at turftimeeq.com →</a>
+      </div>
+    </div>
+
+    <!-- Turf Time GT-100 -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Topdressers</div>
+        <img src="assets/img/products/turf-gt100.webp" alt="Turf Time GT-100 topdresser mounted on a utility vehicle spreading on a fairway" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="product-details">
+        <h3>Topdresser</h3>
+        <div class="product-model">Turf Time GT-100</div>
+        <p>A compact topdresser that spreads wet or dry sand, compost, and infield mix 6 to 30 feet wide from twin 18" spinner discs. Available as a UTV bed mount or pull-behind unit, with optional sideboards for lighter materials.</p>
+        <ul class="product-specs">
+          <li><span>Hopper</span><strong>0.75 cu yd struck / 1 cu yd heaped</strong></li>
+          <li><span>Spread width</span><strong>6 – 30 ft</strong></li>
+          <li><span>Configurations</span><strong>UTV mount or towable</strong></li>
+          <li><span>Weight</span><strong>From 1,050 lb</strong></li>
+        </ul>
+        <a href="https://www.turftimeeq.com/topdressers/gt-100-topdresser" target="_blank" rel="noopener" class="product-link">Full specs at turftimeeq.com →</a>
+      </div>
+    </div>
+
+    <!-- Turf Time FX650 -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Topdressers</div>
+        <img src="assets/img/products/turf-fx650.webp" alt="Turf Time FX650 material handler and spreader on a golf course" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="product-details">
+        <h3>Material Handler / Spreader</h3>
+        <div class="product-model">Turf Time FX650</div>
+        <p>Big-volume topdressing and material moving in one machine. Carries 6.5 yards on low-ground-pressure turf tires, spreads up to 40 feet wide, tends smaller topdressers, and hauls sand to bunkers — all from a wireless remote.</p>
+        <ul class="product-specs">
+          <li><span>Hopper</span><strong>6.5 cu yd heaped</strong></li>
+          <li><span>Spread width</span><strong>6 – 40 ft</strong></li>
+          <li><span>Power</span><strong>Tractor hydraulics, 12–15 GPM</strong></li>
+          <li><span>Controls</span><strong>Wireless remote</strong></li>
+        </ul>
+        <a href="https://www.turftimeeq.com/topdressers/fx-650-topdresser" target="_blank" rel="noopener" class="product-link">Full specs at turftimeeq.com →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="products-coming-soon" style="border-style: solid;">
+    <p><strong>Want to see one on your property?</strong> Call John at <a href="tel:+19493388307" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">(949) 338-8307</a> or <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">request a demo</a> — same fast delivery and personal service as every ATP machine.</p>
+  </div>
+
+</section>
+
+</div><!-- end page-turf -->
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- GRINDERS PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page-grinders" id="page-grinders">
+
+<section style="padding-top: 120px; background: var(--deep-black); padding-bottom: 4rem;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 2rem; text-align: center;">
+    <div class="hero-tag" style="justify-content: center; opacity: 1; animation: none;">SIP Reel &amp; Bed Knife Grinders</div>
+    <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); color: white; margin-bottom: 1rem;">Sharp Reels. <span style="color: var(--baroness-red);">Clean Cut.</span></h2>
+    <p style="font-size: 1.1rem; color: #ffffff; max-width: 640px; margin: 0 auto; line-height: 1.7; font-weight: 400;">
+      The quality of cut starts in the shop. ATP is your Southern California source for SIP Peerless reel grinders and Ideal bed knife grinders — the most precise grinding systems in the industry.
+    </p>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<section class="products-section">
+  <div class="products-header">
+    <div style="display: inline-flex; color: var(--baroness-red); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.5rem;">Shop Equipment</div>
+    <h2>The <em>Grinders</em></h2>
+    <p>SIP builds grinders to within thousandths of an inch — straight to .001" and parallel to .002" — and does it faster than anything else on the market. Full sets are already in play at Southern California clubs — and ATP has units on order to shorten the wait.</p>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- SIP Peerless 7000S -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Reel Grinder</div>
+        <img src="assets/img/products/grinder-7000s.webp" alt="SIP Peerless 7000S shielded automatic reel grinder" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:1.25rem;">
+      </div>
+      <div class="product-details">
+        <h3>Shielded Automatic Reel Grinder</h3>
+        <div class="product-model">SIP Peerless 7000S</div>
+        <p>The same grinding head, Total Parallel Grinding™ and Reel Diameter Tape™ system as the 7000C in a more compact, more affordable front-shield package. Grinds straight to within .001" and parallel within .002" — and 2–3× faster than competing grinders in side-by-side tests.</p>
+        <ul class="product-specs">
+          <li><span>Precision</span><strong>.001" straight / .002" parallel</strong></li>
+          <li><span>Carriage travel</span><strong>35"</strong></li>
+          <li><span>Relief grinding</span><strong>Optional TorqueControl™ auto-indexing</strong></li>
+          <li><span>Footprint</span><strong>60" × 42", 1,500 lb</strong></li>
+        </ul>
+        <a href="https://sipgrinder.com/products/p7000/p7000si.html" target="_blank" rel="noopener" class="product-link">Full specs at sipgrinder.com →</a>
+      </div>
+    </div>
+
+    <!-- SIP Peerless 7000C -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Reel Grinder</div>
+        <img src="assets/img/products/grinder-7000c.webp" alt="SIP Peerless 7000C completely enclosed automatic reel grinder" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:1.25rem;">
+      </div>
+      <div class="product-details">
+        <h3>Fully Enclosed Automatic Reel Grinder</h3>
+        <div class="product-model">SIP Peerless 7000C</div>
+        <p>Only the essentials live inside the enclosure — the track shafts, spin motor, and cylinders stay outside where it's clean. Pneumatic front and rear doors open at the flip of a switch, and the unique head and reel-clamping design takes heavy or feather-light grinds without hop or chatter.</p>
+        <ul class="product-specs">
+          <li><span>Precision</span><strong>.001" straight / .002" parallel</strong></li>
+          <li><span>Doors</span><strong>Pneumatic front + rear</strong></li>
+          <li><span>Relief grinding</span><strong>Optional TorqueControl™ auto-indexing</strong></li>
+          <li><span>Footprint</span><strong>68" × 68", 2,500 lb</strong></li>
+        </ul>
+        <a href="https://sipgrinder.com/products/p7000/p7000ci.html" target="_blank" rel="noopener" class="product-link">Full specs at sipgrinder.com →</a>
+      </div>
+    </div>
+
+    <!-- SIP Ideal 6000 -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Bed Knife Grinder</div>
+        <img src="assets/img/products/grinder-6000.webp" alt="SIP Ideal 6000 automatic bed knife grinder" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:1.25rem;">
+      </div>
+      <div class="product-details">
+        <h3>Automatic Bed Knife Grinder</h3>
+        <div class="product-model">SIP Ideal 6000</div>
+        <p>Fixed dual grinding heads grind the top and front faces at the same time, cutting setup and changeover to a minimum. Fully enclosed to tame dust and noise, with distortion-free pivot-bolt or bottom-support mounting and an integrated coolant mist system.</p>
+        <ul class="product-specs">
+          <li><span>Heads</span><strong>Two fixed, ¾ hp each</strong></li>
+          <li><span>Carriage travel</span><strong>40"</strong></li>
+          <li><span>Drive</span><strong>Maintenance-free pneumatic</strong></li>
+          <li><span>Footprint</span><strong>75" × 40", 1,500 lb</strong></li>
+        </ul>
+        <a href="https://sipgrinder.com/products/i6000/i6000i.html" target="_blank" rel="noopener" class="product-link">Full specs at sipgrinder.com →</a>
+      </div>
+    </div>
+
+    <!-- SIP Ideal 650 -->
+    <div class="product-card">
+      <div class="product-image" style="background:#ffffff;">
+        <div class="product-badge">Bed Knife Grinder</div>
+        <img src="assets/img/products/grinder-650.webp" alt="SIP Ideal 650 bed knife grinder" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:1.25rem;">
+      </div>
+      <div class="product-details">
+        <h3>Bed Knife Grinder</h3>
+        <div class="product-model">SIP Ideal 650</div>
+        <p>An entry-level bed knife grinder that outperforms most competitors' top models. The V-support pallet aligns both faces to the pivot bolts within .002" without distorting the knife, on a pneumatically balanced head riding hard-chromed track shafts.</p>
+        <ul class="product-specs">
+          <li><span>Precision</span><strong>Both faces parallel within .002"</strong></li>
+          <li><span>Carriage travel</span><strong>35"</strong></li>
+          <li><span>Motor</span><strong>1 hp TEFC</strong></li>
+          <li><span>Footprint</span><strong>70" × 32", 750 lb</strong></li>
+        </ul>
+        <a href="https://sipgrinder.com/products/i650/i650i.html" target="_blank" rel="noopener" class="product-link">Full specs at sipgrinder.com →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="products-coming-soon" style="border-style: solid;">
+    <p><strong>Want to see one on your property?</strong> Call John at <a href="tel:+19493388307" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">(949) 338-8307</a> or <a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;" style="color: var(--baroness-red); font-weight: 600; text-decoration: none;">request a demo</a> — same fast delivery and personal service as every ATP machine.</p>
+  </div>
+
+</section>
+
+</div><!-- end page-grinders -->
+
+
 
 <!-- ═══════════════ FOOTER (shared) ═══════════════ -->
 <footer>
@@ -1217,6 +1489,8 @@
       <li><a href="#why" onclick="showPage('home', this.getAttribute('href')); return false;">Why ATP</a></li>
       <li><a href="#equipment" onclick="showPage('products'); location.hash='equipment'; return false;">Mowers</a></li>
       <li><a href="#vehicles" onclick="showPage('vehicles'); location.hash='vehicles'; return false;">Utility Vehicles</a></li>
+      <li><a href="#turf" onclick="showPage('turf'); location.hash='turf'; return false;">Turf Equipment</a></li>
+      <li><a href="#grinders" onclick="showPage('grinders'); location.hash='grinders'; return false;">Grinders</a></li>
       <li><a href="#results" onclick="showPage('home', this.getAttribute('href')); return false;">Results</a></li>
       <li><a href="#about" onclick="showPage('home', this.getAttribute('href')); return false;">About</a></li>
       <li><a href="#contact" onclick="showPage('home', this.getAttribute('href')); return false;">Contact</a></li>
@@ -1230,7 +1504,7 @@
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script>
 function showPage(page, anchor) {
-  ['home', 'products', 'vehicles'].forEach(function(p) {
+  ['home', 'products', 'vehicles', 'turf', 'grinders'].forEach(function(p) {
     document.getElementById('page-' + p).classList.remove('active');
   });
   document.getElementById('page-' + page).classList.add('active');
@@ -1251,6 +1525,8 @@ function showPage(page, anchor) {
 document.addEventListener('DOMContentLoaded', () => {
   if (location.hash === '#equipment') showPage('products');
   if (location.hash === '#vehicles') showPage('vehicles');
+  if (location.hash === '#turf') showPage('turf');
+  if (location.hash === '#grinders') showPage('grinders');
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
