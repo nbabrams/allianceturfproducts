@@ -165,10 +165,6 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-size: 128px 128px;
   }
-  .hero-stripes {
-    position: absolute; inset: 0; pointer-events: none;
-    background: repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(45,90,39,0.03) 80px, rgba(45,90,39,0.03) 160px);
-  }
   .hero-content {
     position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; padding: 0 2rem; padding-top: 120px;
   }
@@ -472,10 +468,10 @@
 
   /* ── Outcome (better grass/golf) section ── */
   .outcome-section { padding: 3.5rem 2rem 7rem; background: var(--white); }
-  .outcome-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center; }
-  .outcome-content h2 { font-size: clamp(1.4rem, 2vw, 1.7rem); color: var(--deep-black); line-height: 1.3; margin-bottom: 1.5rem; }
+  .outcome-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2rem; align-items: center; }
+  .outcome-content h2 { font-size: clamp(1.5rem, 2.4vw, 2.15rem); color: var(--deep-black); line-height: 1.25; margin-bottom: 1.5rem; }
   .outcome-content h2 em { font-style: normal; color: var(--baroness-red); }
-  .outcome-content p { font-size: 15px; line-height: 1.8; color: var(--text-secondary); max-width: 460px; }
+  .outcome-content p { font-size: 15px; line-height: 1.8; color: var(--text-secondary); max-width: 640px; }
   .outcome-visual img { width: 100%; height: auto; display: block; }
 
   /* ── Equipment cards (Mowers / UTVs) ── */
@@ -615,7 +611,6 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-grain"></div>
-  <div class="hero-stripes"></div>
   <div class="hero-content">
     <div class="hero-tag">Exclusive Baroness Distributor — Southern California &amp; Las Vegas</div>
     <h1 class="hero-headline">The Cut Speaks<br>For <em>Itself.</em></h1>
